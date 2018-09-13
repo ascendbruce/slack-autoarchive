@@ -1,5 +1,15 @@
 # Autoarchive unused slack channels
 
+## Mod Memo
+
+I made a little tweak at branch `list-disused-channels`. It will list with number of members and last actvity date. So that I can make judgment to bulk archive/whitelist channels.
+
+Usage
+
+```
+SLACK_TOKEN=xoxp-********************* /usr/local/bin/python2.7 slack-autoarchive.py
+```
+
 ## Requirements
 
 - python2.7/python3
