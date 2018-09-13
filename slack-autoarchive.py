@@ -143,6 +143,8 @@ def is_channel_disused(channel, too_old_datetime):
   has_min_users = (MIN_MEMBERS == 0 or MIN_MEMBERS > num_members)
   return last_message_datetime <= too_old_datetime and (not is_user or has_min_users)
 
+  if last_message_datetime <= too_old_datetime or num_members <= 1:
+    print(channel['name'], num_members, last_message_datetime.strftime('%Y-%m-%d'))
 
 # If you add channels to the WHITELIST_KEYWORDS constant they will be exempt from archiving.
 def is_channel_whitelisted(channel, white_listed_channels):
@@ -202,12 +204,12 @@ alert_templates = get_channel_alerts()
 archived_channels = []
 
 for channel in get_all_channels():
-  sys.stdout.write('.')
-  sys.stdout.flush()
+  # sys.stdout.write('.')
+  # sys.stdout.flush()
 
   if (not is_channel_whitelisted(channel, whitelist_keywords) and
     is_channel_disused(channel, TOO_OLD_DATETIME)):
     archived_channels.append(channel)
-    archive_channel(channel, alert_templates['channel_template'])
+    # archive_channel(channel, alert_templates['channel_template'])
 
-send_admin_report(archived_channels)
+# send_admin_report(archived_channels)
